@@ -2,3 +2,5 @@ venv/
 *.pyc
 venv/
 *.pyc
+venv/
+*.pyc
