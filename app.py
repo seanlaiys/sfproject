@@ -40,7 +40,6 @@ def get_user_url(conn, arg):
     query = ('SELECT DISTINCT t.username, t.url FROM Tweets t')
     cur.execute(query)
     urls = cur.fetchall()
-    urls = [str(url).replace("_", "/") for url in urls]
     conn.close()
     return users, urls
 
@@ -65,7 +64,6 @@ def get_most_engagement_url(conn):
             ' LIMIT 20')
     cur.execute(query)
     urls = cur.fetchall()
-    urls = [str(url).replace("_", "/") for url in urls]
     cur.close()
     conn.close()
     return urls
