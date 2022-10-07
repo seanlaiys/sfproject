@@ -1,5 +1,5 @@
 import celery
-import os
+import os 
 
 app = celery.Celery('scalingo-sample')
 
