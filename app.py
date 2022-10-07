@@ -100,7 +100,7 @@ def users():
 def users_query(query):
     form = SearchForm(request.form)
     if request.method == 'POST':
-        return redirect((url_for('users', query=form.search.data)))
+        return redirect((url_for('users_query', query=form.search.data)))
     conn = get_db_connection()
     users, urls = get_user_url(conn, query)
     conn.close()
