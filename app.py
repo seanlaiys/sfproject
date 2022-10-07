@@ -94,7 +94,7 @@ def users():
     conn = get_db_connection()
     users, urls = get_user_url(conn, '')
     conn.close()
-    return render_template('user.html', users=users, urls=urls, form=form)
+    return render_template('user.html', users=users[:100], urls=urls, form=form)
 
 @app.route('/users/<query>', methods=['GET', 'POST'])
 def users_query(query):
