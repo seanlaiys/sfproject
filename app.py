@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 
 app = Flask(__name__)
 
+# Establishes connection to database
 def get_db_connection():
     # env_path = os.path.join('env_var', 'userdb.env')
     # load_dotenv(env_path)
@@ -28,6 +29,7 @@ def get_db_connection():
             port=port)
     return conn
 
+# Gets users and the urls they have posted
 def get_user_url(conn, arg):
     cur = conn.cursor()
     query = ('SELECT DISTINCT t.username FROM Tweets t')
@@ -44,6 +46,7 @@ def get_user_url(conn, arg):
     conn.close()
     return users, urls
 
+# Gets users with most tweets
 def get_most_tweets_users(conn):
     cur = conn.cursor()
     query = ('SELECT t.username, COUNT(*) FROM Tweets t'
@@ -56,6 +59,7 @@ def get_most_tweets_users(conn):
     conn.close()
     return users
 
+# Gets urls with most engagement
 def get_most_engagement_url(conn):
     cur = conn.cursor()
     query = ('SELECT t.url, SUM(t.total_engagement) AS engagement, SUM(t.retweets), SUM(t.likes), SUM(t.replies)' 
@@ -70,6 +74,7 @@ def get_most_engagement_url(conn):
     conn.close()
     return urls
 
+# Gets users with most engagement
 def get_most_engagement_users(conn):
     cur = conn.cursor()
     query = ('SELECT t.username, SUM(t.total_engagement) AS engagement, SUM(t.retweets), SUM(t.likes), SUM(t.replies)' 

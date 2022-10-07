@@ -2,6 +2,7 @@ from minet.twitter import TwitterAPIScraper
 import pandas as pd
 import os
 
+# Scrapes tweet containing urls and convert collected data to sql
 def scrape_tweet():
     # Initialise variables
     scraper = TwitterAPIScraper()

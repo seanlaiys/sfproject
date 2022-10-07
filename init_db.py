@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 
+# Updates the scraped twitter records to the database
 def init_db():
     path = './tweets.sql'
 #     env_path = os.path.join('env_var', 'userdb.env')
