@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Users with Most Engagement {% endblock %}</h1>
+    {% for user in users %}
+        <div class='cell'>
+            <h3>{{ user[0] }}: {{ user[1] }}</h3>
+            <i><p>({{ user[2] }} retweets)</p></i>
+            <i><p>({{ user[3] }} likes)</p></i>
+            <i><p>({{ user[4] }} replies)</p></i>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Twitter Users and URLs Shared {% endblock %}</h1>
+    {% from "_formhelpers.html" import render_field %}
+    <form method="POST">
+        <dl>
+            {{render_field(form.search)}} <input type="submit" value="Search">
+        </p></dl>
+    </form>
+    {% for user in users %}
+        <div class='cell'>
+            <h3>{{ user[0] }}</h3>
+            {% for url in urls %}
+                {% if user[0] == url[0] %}
+                <i><p>{{ url[1] }}</p></i>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Users with Most Tweets {% endblock %}</h1>
+    {% for user in users %}
+        <div class='cell'>
+            <h3>{{ user[0] }}: {{ user[1] }}</h3>
+        </div>
+    {% endfor %}
+{% endblock %}
