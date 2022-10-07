@@ -65,7 +65,7 @@ def get_most_engagement_url(conn):
             ' LIMIT 20')
     cur.execute(query)
     urls = cur.fetchall()
-    urls = [(user, str(url).replace("_", "/")) for user, url in urls]
+    urls = [(str(url).replace("_", "/"), a1, a2, a3, a4) for url, a1, a2, a3, a4 in urls]
     cur.close()
     conn.close()
     return urls
