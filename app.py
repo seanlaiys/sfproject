@@ -3,19 +3,29 @@ from forms import SearchForm
 import psycopg2
 import os
 from dotenv import load_dotenv
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 
 def get_db_connection():
-    env_path = os.path.join('env_var', 'userdb.env')
-    load_dotenv(env_path)
-    user = os.getenv('DB_USERNAME')
-    password = os.getenv('DB_PASSWORD')
+    # env_path = os.path.join('env_var', 'userdb.env')
+    # load_dotenv(env_path)
+    # user = os.getenv('DB_USERNAME')
+    # password = os.getenv('DB_PASSWORD')
+
+    DATABASE_URL = urlparse("postgres://my_app_slys_1811:29uk9MajSTOg2peEnDB9@my-app-slys-1811.postgresql.a.osc-fr1.scalingo-dbs.com:38763/my_app_slys_1811?sslmode=prefer")
+    username = DATABASE_URL.username
+    password = DATABASE_URL.password
+    database = DATABASE_URL.path[1:]
+    hostname = DATABASE_URL.hostname
+    port = DATABASE_URL.port
+
     conn = psycopg2.connect(
-        host="localhost",
-        database="sf_db",
-        user=user,
-        password=password)
+            host=hostname,
+            database=database,
+            user=username,
+            password=password,
+            port=port)
     return conn
 
 def get_user_url(conn, arg):
